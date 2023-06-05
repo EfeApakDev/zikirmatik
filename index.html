@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zikirmatik ve Sözler Uygulaması</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+    }
+    
+    .counter {
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .quote {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .attribution {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    .btn {
+      width: 100%;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="counter">0</h1>
+    <button id="incrementBtn" class="btn btn-primary">Artır</button>
+    <button id="resetBtn" class="btn btn-danger">Sıfırla</button>
+    <h2 class="quote" id="quoteText">Hoş geldiniz!</h2>
+    <p class="attribution">Yapımcı: Apak Bilişim</p>
+  </div>
+  
+  <audio id="audio" src="path/to/sound.mp3"></audio>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    var counter = 0;
+    var quotes = [
+      "Başkalarına yardım etmek, iç huzurun anahtarıdır.",
+      "Sabır, başarının anahtarıdır.",
+      "Güçlü olmak, zorluklarla başa çıkma becerisine sahip olmak demektir.",
+      "Sevgi, dünyayı güzelleştiren en büyük güçtür.",
+      "Hayatta küçük mutlulukları görmek, büyük mutluluklar getirir.",
+      "Bir adım atmak, birçok olasılığı beraberinde getirir.",
+      "Gülümsemek, her daim mutluluğun en güzel ifadesidir.",
+      "Birlikte çalışmak, büyük başarılara ulaşmanın anahtarıdır.",
+      "Daima umutlu olmak, hayatta ilerlemenin güvencesidir.",
+      "Her gün öğrenmek, gelişmek için bir fırsattır."
+    ];
+    var audio = document.getElementById('audio');
+    
+    function changeQuote() {
+      var quoteIndex = counter % quotes.length;
+      $('#quoteText').text(quotes[quoteIndex]);
+    }
+    
+    $('#incrementBtn').on('click', function() {
+      counter++;
+      $('.counter').text(counter);
+      playSound();
+      changeQuote();
+    });
+    
+    $('#resetBtn').on('click', function() {
+      counter = 0;
+      $('.counter').text(counter);
+    });
+    
+    function playSound() {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  </script>
+</body>
+</html>
